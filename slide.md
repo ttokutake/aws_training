@@ -32,7 +32,7 @@ IoT事業本部第1開発部4課 徳武
 - データセンターのラックを借りたり
 - VPSを利用したり
 
-<img src="./image/datacenter-286386_1280.jpg" alt="喜びの舞" width="320px">
+<img src="./image/datacenter-286386_1280.jpg" alt="ラックサーバー" width="320px">
 
 >>>
 
@@ -55,5 +55,118 @@ IoT事業本部第1開発部4課 徳武
 ---
 
 ## 実際に触ってみよう
+
+1. Amazon EC2を触る
+2. Amazon RDSを触る
+3. クリーンアップ作業
+    - 上記作業中に作成したコンポーネントやサービスをメモしておこう
+    - (あとで滞りなくクリーンアップするためです)
+
+---
+
+## Amazon EC2
+
+- 仮想サーバーを提供するサービス
+- とりあえずログインして、サービス一覧からEC2を選べ！
+
+TODO: リンク書く
+
+>>>
+
+## EC2の仮想サーバーを立ち上げる
+
+- TODO: EC2起動までの手順を書いてく
+
+>>>
+
+## EC2インスタンスにNginxをインストール
+
+- TODO: ssh
+- TODO: Nginxをインストール/自動起動の設定
+- TODO: Nginxのwelcomeページを表示
+
+>>>
+
+## 現状のインフラ構成図
+
+TODO: 図を貼る
+
+>>>
+
+## 現状の構成の問題点
+
+- TODO: 問題点書く
+
+>>>
+
+## Load Balancerを導入する
+
+- TODO: ALBとターゲットグループの準備手順書く
+- TODO: AMIの準備
+- TODO: もう一台EC2インスタンスを準備する
+
+>>>
+
+## Auto Scaling Groupを導入する
+
+- TODO: Auto Scaling Groupと起動設定の準備手順を書く
+- TODO: Auto Scalingに紐づいていないインスタンスは削除する
+
+>>>
+
+## 現状のインフラ構成図
+
+TODO: 図を貼る
+
+---
+
+## Amazon RDS
+
+- マネージドなRDB(Relational DataBase)を提供するサービス
+- サービス一覧からRDSを選べ！
+
+>>>
+
+## PostgreSQLをインストール
+
+- Homebrew, GCC, asdfがインストールされていることを確認
+    - `brew --version`
+    - `gcc --version`
+    - `asdf --version`
+- PostgreSQLのインストール
+    - `asdf plugin-add postgres`
+    - `asdf install postgres 9.6.6 && asdf global postgres 9.6.6`
+    - (エラーが起こらないことを祈る)
+
+>>>
+
+## RDBって？
+
+>>>
+
+## RDSの何が嬉しいの？
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+- TODO: RDS起動までの手順を書いてく
+- TODO: 注意点も書いておく
+    - VPC内アクセス限定にしろ
+    - セキュリティーグループ使え
+
+>>>
+
+## CLI Clientから操作
+
+- TODO: テーブル作成
+- TODO: レコード挿入
+- TODO: スナップショット作成
+- TODO: テーブル削除
+- TODO: スナップショットから復元
+
+---
+
+## クリーンアップ作業
 
 - TBD
