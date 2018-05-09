@@ -62,6 +62,13 @@ IoT事業本部第1開発部4課 徳武
     - 上記作業中に作成したコンポーネントやサービスをメモしておこう
     - (あとで滞りなくクリーンアップするためです)
 
+>>>
+
+## 注意すること
+
+- AWSの利用にはお金がかかります
+- 操作にはそれなりに注意を払いましょう
+
 ---
 
 ## Amazon EC2
@@ -255,8 +262,7 @@ TODO: 図を貼る
 
 ## Amazon RDS
 
-- マネージドなRDB(Relational DataBase)を提供するサービス
-- サービス一覧からRDSを選べ！
+マネージドなRDBMS(Relational DataBase Management System)を提供するサービス
 
 >>>
 
@@ -275,18 +281,150 @@ TODO: 図を貼る
 
 ## RDBって？
 
+- Relational Database (リレーショナルデータベース)
+- データ構造が表形式
+- 表同士の関係を定義することで複雑なデータの関係性を表現
+
+>>>
+
+## 例えばこんな感じ
+
+- ユーザーテーブル
+
+|id|name|
+|-:|:---|
+|1 |Taro|
+|2 |Jiro|
+
+- コメントテーブル
+
+|id|user.id|comment      |
+|-:|------:|:------------|
+|A |1      |hello, world!|
+|B |2      |hello, RDB!  |
+
 >>>
 
 ## RDSの何が嬉しいの？
+
+- いろいろなRDBMSが選べる
+- スナップショット
+- リードレプリカ
+- リソースモニタリング
+- その他いろいろ
+
+>>>
+
+## RDS用のSGを作成する
+
+
 
 >>>
 
 ## RDSインスタンスを立ち上げる
 
-- TODO: RDS起動までの手順を書いてく
-- TODO: 注意点も書いておく
-    - VPC内アクセス限定にしろ
-    - セキュリティーグループ使え
+1: サービス一覧からRDSを選ぶ
+
+<img src="./image/RDS_initial.png" alt="RDS初期画面" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+2: 左メニューの"インスタンス"を選ぶ
+
+3: "DBインスタンスの起動"をクリック
+
+<img src="./image/RDS_instance_list.png" alt="RDSインスタンス一覧" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+4: "PostgreSQL"を選んで"次へ"
+
+<img src="./image/RDS_creation_engine.png" alt="RDSインスタンス作成(エンジン)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+5: "開発/テスト"を選んで"次へ"
+
+<img src="./image/RDS_creation_use_case.png" alt="RDSインスタンス作成(ユースケース)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+6: "RDS無料利用枠の対象オプションのみを有効化"をチェック
+
+<img src="./image/RDS_creation_detail1.png" alt="RDSインスタンス作成(詳細1)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+7: 画像を参考に"設定"の各項目を埋めて"次へ"
+
+<img src="./image/RDS_creation_detail2.png" alt="RDSインスタンス作成(詳細2)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+8: "ネットワーク&セキュリティ"はそのままでOK
+
+<img src="./image/RDS_creation_detail3.png" alt="RDSインスタンス作成(詳細3)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+9: "データベースの名前"は"sample"と入力
+
+10: "バックアップの保存期間"を"0日間"に変更
+
+<img src="./image/RDS_creation_detail4.png" alt="RDSインスタンス作成(詳細4)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+11: "DBインスタンスの作成"をクリック
+
+<img src="./image/RDS_creation_detail5.png" alt="RDSインスタンス作成(詳細5)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+12: "DBインスタンスの詳細の表示"をクリック
+
+<img src="./image/RDS_creation_done.png" alt="RDSインスタンス作成(完了)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+13: 作成が完了するまで待機
+
+<img src="./image/RDS_instance_detail_wait.png" alt="RDSインスタンス詳細(作成中)" width="720px">
+
+>>>
+
+## RDSインスタンスを立ち上げる
+
+14: ページを下にスクロールして"詳細"を確認 ("エンドポイント"を確認しておこう！)
+
+<img src="./image/RDS_instance_detail.png" alt="RDSインスタンス詳細" width="720px">
+
+>>>
+
+## 普段使うときの注意点
+
+- "パブリックアクセシビリティ"は"いいえ"に
+- "バックアップ保存期間"は"1日間"以上に
 
 >>>
 
