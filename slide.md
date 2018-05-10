@@ -74,77 +74,138 @@ IoT事業本部第1開発部4課 徳武
 ## Amazon EC2
 
 - 仮想サーバーを提供するサービス
-- とりあえずログインして、サービス一覧からEC2を選べ！
-    1. 事前に渡したIAM情報にログインURLがあるのでブラウザで開いてログイン
-    2. 右上の「バージニア北部」をクリックして「アジアパシフィック (東京)」を選択
-    3. 左上の「サービス」をクリックして検索フォームに「ec2」と入力してenter
+- まずはログイン！
+    - 事前に渡したIAM情報にログインURLがあるのでブラウザで開いてログイン
 
 >>>
 
-## EC2の仮想サーバーを立ち上げる part1
+## 仮想サーバーを立ち上げる
 
-1. 左メニューの「インスタンス」をクリック
-2. 「インスタンスの作成」という青いボタンをクリック
-3. 「Amazon Linux 2」を選択して「選択」ボタンをクリック
-4. タイプが「t2.micro」となっている行を選択していることを確認
-5. 「次の手順:インスタンスの詳細の設定」ボタンをクリック
+1: リージョンを"東京"に変更
+
+<img src="./image/AWS_top.png" alt="AWSトップページ" width="720px">
 
 >>>
 
-## EC2の仮想サーバーを立ち上げる part2
+## 仮想サーバーを立ち上げる
 
-6. 「次の手順:ストレージの追加」ボタンをクリック
-7. 「次の手順:タグの追加」ボタンをクリック
-8. タグの設定
-    - キー: Name
-    - 値: (自分のものだとわかりやすい名前)
-9. 「次の手順:セキュリティグループの設定」ボタンをクリック
+2: EC2のトップ画面へ
+
+<img src="./image/AWS_services.png" alt="AWSサービス一覧" width="720px">
 
 >>>
 
-## EC2の仮想サーバーを立ち上げる part3
+## 仮想サーバーを立ち上げる
 
-10. セキュリティグループ(SG)の設定 part1
-    1. 「セキュリティグループ名」に自分のものだとわかりやすい名前を入力
-    2. [確認くん](https://www.ugtop.com/spill.shtml)などを使って自分のグローバルIPを確認
-    3. タイプ「SSH」のソースを「(グローバルIP)/32」に変更
+3: 左メニューの"インスタンス"を選ぶ
 
->>>
+4: "インスタンスの作成"をクリック
 
-## EC2の仮想サーバーを立ち上げる part4
-
-10. セキュリティグループ(SG)の設定 part2
-    4. 「ルールの追加」ボタンをクリック
-    5. 追加したルールのタイプを「HTTP」に変更
-    6. 追加したルールのソースを「(グローバルIP)/32」に変更
+<img src="./image/EC2_instance_create1.png" alt="EC2インスタンス作成1" width="720px">
 
 >>>
 
-## EC2の仮想サーバーを立ち上げる part5
+## 仮想サーバーを立ち上げる
 
-11. 「確認と作成」ボタンをクリック
-12. 「作成」ボタンをクリック
-13. キーペアの作成
-    1. 「新しいキーペアの作成」を選択
-    2. キーペア名に自分のものだとわかりやすい名前を入れて「キーペアのダウンロード」をクリック
-    3. 「インスタンスの作成」ボタンをクリック
+5: "Amazon Linux 2 LTS ..."を"選択"
+
+<img src="./image/EC2_instance_create2.png" alt="EC2インスタンス作成2" width="720px">
 
 >>>
 
-## EC2インスタンスにNginxをインストール
+## 仮想サーバーを立ち上げる
 
-1. インスタンス一覧で自分の作成したインスタンスの「IPv4パブリックIP」を確認
-2. ターミナルで以下を実施
-    ```
-    $ chmod 600 ~/Downloads/(キーペア名).pem
-    $ ssh ec2-user@(IPv4パブリックIP) -i ~/Downloads/(キーペア名).pem # サーバーにssh
-    > sudo yum update
-    > amazon-linux-extras                        # nginxのバージョンを確認
-    > sudo amazon-linux-extras install nginx1.12 # nginxのインストール
-    > sudo systemctl enable nginx
-    > sudo systemctl start nginx
-    ```
-3. ブラウザで`http://(IPv1パブリックIP)`を開く
+6: "次の手順: ..."をクリック
+
+<img src="./image/EC2_instance_create3.png" alt="EC2インスタンス作成3" width="720px">
+
+>>>
+
+## 仮想サーバーを立ち上げる
+
+7: "次の手順: ..."をクリック
+
+<img src="./image/EC2_instance_create4.png" alt="EC2インスタンス作成4" width="720px">
+
+>>>
+
+## 仮想サーバーを立ち上げる
+
+8: "次の手順: ..."をクリック
+
+<img src="./image/EC2_instance_create5.png" alt="EC2インスタンス作成5" width="720px">
+
+>>>
+
+## 仮想サーバーを立ち上げる
+
+9: 画像を参考にタグを追加して"次の手順: ..."をクリック
+
+<img src="./image/EC2_instance_create6.png" alt="EC2インスタンス作成6" width="720px">
+
+>>>
+
+## 仮想サーバーを立ち上げる
+
+10: 画像を参考にルールを追加して"確認と作成"をクリック ("ソース"のIPは[自分のグローバルIP](https://www.ugtop.com/spill.shtml))
+
+<img src="./image/EC2_instance_create7.png" alt="EC2インスタンス作成7" width="720px">
+
+>>>
+
+## 仮想サーバーを立ち上げる
+
+11: 確認して問題なければ"作成"
+
+<img src="./image/EC2_instance_create8.png" alt="EC2インスタンス作成8" width="720px">
+
+>>>
+
+## 仮想サーバーを立ち上げる
+
+12: 画像を参考に"キーペア名"を入力して"キーペアのダウンロード"&"インスタンスの作成"
+
+<img src="./image/EC2_instance_create9.png" alt="EC2インスタンス作成9" width="720px">
+
+>>>
+
+## 仮想サーバーを立ち上げる
+
+13: "インスタンスの表示"をクリックして一覧画面へ
+
+<img src="./image/EC2_instance_create10.png" alt="EC2インスタンス作成10" width="720px">
+
+>>>
+
+## インスタンスにNginxを導入
+
+1: 作成したインスタンスの"IPv4パブリックIP"を確認
+
+<img src="./image/EC2_instance_list.png" alt="EC2インスタンス一覧" width="720px">
+
+>>>
+
+## インスタンスにNginxを導入
+
+2: ターミナルでいろいろ実施
+
+```bash
+$ chmod 600 ~/Downloads/(キーペア名).pem
+$ ssh ec2-user@(IPv4パブリックIP) -i ~/Downloads/(キーペア名).pem # サーバーにssh
+> sudo yum update
+> amazon-linux-extras                        # nginxのバージョンを確認
+> sudo amazon-linux-extras install nginx1.12 # nginxのインストール
+> sudo systemctl enable nginx
+> sudo systemctl start nginx
+```
+
+>>>
+
+## インスタンスにNginxを導入
+
+3: ブラウザで`http://(IPv1パブリックIP)`を開く
+
+<img src="./image/EC2_nginx.png" alt="EC2のNginxページ" width="720px">
 
 >>>
 
@@ -161,82 +222,157 @@ TODO: 図を貼る
 
 >>>
 
-## Load Balancerを導入する Part1
+## Load Balancerを導入する
 
-1. 左メニューの「ロードバランサー」をクリック
-2. 「ロードバランサーを作成」という青いボタンをクリック
-3. 「Application Load Balancer」の「作成」ボタンをクリック
-4. 名前に自分のものとわかりやすい名前を入力
-5. アベイラビリティーゾーン全てにチェック
+1: 左メニューの"ロードバランサー"を選ぶ
 
->>>
+2: "ロードバランサーを作成"をクリック
 
-## Load Balancerを導入する Part2
-
-6. タグの設定
-    - キー: Name
-    - 値: (自分のものだとわかりやすい名前)
-7. 「次の手順:セキュリティ設定の構成」ボタンをクリック
-8. 「次の手順:セキュリティグループの設定」ボタンをクリック
+<img src="./image/EC2_alb_create1.png" alt="ALB作成1" width="720px">
 
 >>>
 
-## Load Balancerを導入する Part3
+## Load Balancerを導入する
 
-9. SGの設定
-    1. 「新しいセキュリティグループを作成する」にチェック
-    2. セキュリティグループ名に自分のものだとわかりやすい名前を入れる
-    3. タイプ「HTTP」のソースを「(グローバルIP)/32」に変更
-    4. 「次の手順:ルーティングの設定」ボタンをクリック
+3: "Application Load Balancer"の"作成"をクリック
+
+<img src="./image/EC2_alb_create2.png" alt="ALB作成2" width="720px">
 
 >>>
 
-## Load Balancerを導入する Part4
+## Load Balancerを導入する
 
-10. ターゲットグループの設定
-    1. 名前に自分のものだとわかりやすい名前を入力
-    2. ヘルスチェックの詳細設定をクリック
-    3. 正常のしきい値を5 => 2に変更
-    4. 間隔を30 => 10に変更
-    5. 「次の手順:ターゲットの登録」ボタンをクリック
+4: 画像を参考に"名前"を設定
 
->>>
+5: アベイラビリティーゾーン全てにチェック
 
-## Load Balancerを導入する Part5
+6: "次の手順:..."をクリック
 
-11. ターゲットの登録
-    1. 自分のインスタンスにチェック
-    2. 「登録済みに追加」ボタンをクリック
-    3. 「次の手順:確認」をクリック
-12. 「作成」ボタンをクリック
+<img src="./image/EC2_alb_create3.png" alt="ALB作成3" width="720px">
 
 >>>
 
-## Load Balancerを導入する Part6
+## Load Balancerを導入する
 
-13. インスタンス用SGの変更
-    1. 左メニューの「セキュリティグループ」をクリック
-    2. 自分のインスタンスで使っているセキュリティグループを選択
-    3. 「インバウンド」タブの「編集」ボタンをクリック
-    4. 「ソース」に自分のALB(Application Load Balancer)用SGのグループIDを入力
+7: "次の手順:..."をクリック
+
+<img src="./image/EC2_alb_create4.png" alt="ALB作成4" width="720px">
 
 >>>
 
-## Load Balancerを導入する Part7
+## Load Balancerを導入する
 
-14. 正常に動作しているか確認
-    1. 左メニューの「ターゲットグループ」をクリック
-    2. 自分の作成したターゲットグループを選択
-    3. 「ターゲット」をクリックして、インスタンスのステータスがhealtyになっているか確認
+8: 画像を参考にSGの設定
+
+9: "次の手順:..."をクリック
+
+<img src="./image/EC2_alb_create5.png" alt="ALB作成5" width="720px">
 
 >>>
 
-## Load Balancerを導入する Part8
+## Load Balancerを導入する
 
-15. ページの表示を確認
-    1. 左メニューの「ロードバランサー」をクリック
-    2. 自分の作成したロードバランサーを選択
-    3. 「DNS名」をそのままコピーして、ブラウザで開く
+10: 画像を参考に"ターゲットグループ"と"ヘルスチェック"の設定
+
+11: "次の手順:..."をクリック
+
+<img src="./image/EC2_alb_create6.png" alt="ALB作成6" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+12: 作成済のインスタンスを選んで"登録済みに追加"
+
+<img src="./image/EC2_alb_create7.png" alt="ALB作成7" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+14: "登録済みターゲット"に追加されたことを確認
+
+15: "次の手順:..."をクリック
+
+<img src="./image/EC2_alb_create8.png" alt="ALB作成8" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+16: 確認したら"作成"
+
+<img src="./image/EC2_alb_create9.png" alt="ALB作成9" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+17: "閉じる"
+
+<img src="./image/EC2_alb_create10.png" alt="ALB作成10" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+18: 左メニューの"ターゲットグループ"を選ぶ
+
+19: 自分のTGを選んで"ターゲット"タブを見ると...
+
+<img src="./image/EC2_alb_create11.png" alt="ALB作成11" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+20: 左メニューの"セキュリティグループ"を選ぶ
+
+<img src="./image/EC2_instance_sg_fix1.png" alt="EC2のSG修正1" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+21: 左メニューの"セキュリティグループ"を選ぶ
+
+22: EC2用のSGを選んで"インバウンド"の"編集"
+
+<img src="./image/EC2_instance_sg_fix2.png" alt="EC2のSG修正2" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+23: "HTTP"の"ソース"をALBのSGに修正する
+
+24: "保存"をクリック
+
+<img src="./image/EC2_instance_sg_fix3.png" alt="EC2のSG修正3" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+25: 少し待って"ターゲットグループ"を確認すると...
+
+<img src="./image/EC2_alb_done1.png" alt="ALBのTGがhealthy" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+25: ALBの"DNS名"を確認したら...
+
+<img src="./image/EC2_alb_done2.png" alt="ALBの詳細" width="720px">
+
+>>>
+
+## Load Balancerを導入する
+
+26: ブラウザで開いてページが表示されることを確認！
+
+<img src="./image/EC2_alb_done3.png" alt="ALB" width="720px">
 
 >>>
 
