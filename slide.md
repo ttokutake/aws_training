@@ -317,7 +317,19 @@ TODO: 図を貼る
 
 ## RDS用のSGを作成する
 
+1: EC2の左メニューの"セキュリティグループ"を選ぶ
 
+<img src="./image/SG_for_RDS_list.png" alt="SGの一覧画面" width="720px">
+
+>>>
+
+## RDS用のSGを作成する
+
+2: "セキュリティグループの作成"をクリック
+
+3: 画像を参考に必要な項目を埋めて"作成"
+
+<img src="./image/SG_for_RDS_create.png" alt="SGの作成" width="720px">
 
 >>>
 
@@ -373,7 +385,7 @@ TODO: 図を貼る
 
 ## RDSインスタンスを立ち上げる
 
-8: "ネットワーク&セキュリティ"はそのままでOK
+8: 先ほど作ったRDS用のSGを選択
 
 <img src="./image/RDS_creation_detail3.png" alt="RDSインスタンス作成(詳細3)" width="720px">
 
@@ -428,13 +440,164 @@ TODO: 図を貼る
 
 >>>
 
-## CLI Clientから操作
+## PostgreSQLを使ってみる
 
-- TODO: テーブル作成
-- TODO: レコード挿入
-- TODO: スナップショット作成
-- TODO: テーブル削除
-- TODO: スナップショットから復元
+1: RDSのPostgreSQLに接続してみよう
+
+```bash
+$ psql --version
+psql (PostgreSQL) 9.6.6
+
+$ psql -h (RDSインスタンスのエンドポイント) -d (データベース名) -U (ユーザー名)
+Password for user ttokutake: (ここでパスワードを入力)
+psql (9.6.6)
+Type "help" for help.
+
+sample=>
+```
+
+>>>
+
+## PostgreSQLを使ってみる
+
+2: テーブル作成
+
+```
+sample=> create table users (id integer, name text);
+CREATE TABLE
+```
+
+3: レコード挿入
+
+```
+sample=> insert into users values (1, 'Taro');
+INSERT 0 1
+sample=> insert into users values (2, 'Jiro');
+INSERT 0 1
+sample=> select * from users;
+ id | name
+----+------
+  1 | Taro
+  2 | Jiro
+(2 rows)
+```
+
+>>>
+
+## スナップショットから復元
+
+1: スナップショットを作成してみよう
+
+<img src="./image/RDS_snapshot_create1.png" alt="RDSスナップショット一覧画面" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+2: 画像を参考に"スナップショット名"を入力して"スナップショットの取得"
+
+<img src="./image/RDS_snapshot_create2.png" alt="RDSスナップショット作成" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+3: スナップショット作成の完了を確認
+
+<img src="./image/RDS_snapshot_list.png" alt="RDSスナップショット一覧画面" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+4: テーブルを削除してみる
+
+```
+sample=> drop table users;
+DROP TABLE
+
+sample=> select * from users;
+ERROR:  relation "users" does not exist
+LINE 1: select * from users;
+                      ^
+
+sample=> \q
+```
+
+>>>
+
+## スナップショットから復元
+
+5: スナップショットの詳細画面で"スナップショットの復元"をクリック
+
+<img src="./image/RDS_snapshot_restore1.png" alt="RDSスナップショット詳細画面" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+6: "DBインスタンスのクラス"を"db.t2.micro"に
+
+7: "DBインスタンス識別子"に適当な名前を入力
+
+<img src="./image/RDS_snapshot_restore2.png" alt="RDSスナップショットから復元1" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+8: "DBインスタンスの復元"をクリック
+9: 作成完了まで待つ
+
+<img src="./image/RDS_snapshot_restore3.png" alt="RDSスナップショットから復元2" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+10: 新たなインスタンスの詳細画面で"変更"を選ぶ
+
+<img src="./image/RDS_change_sg1.png" alt="RDSのSG変更1" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+11: 画像を参考に"セキュリティグループ"で自分のものを選択
+
+<img src="./image/RDS_change_sg2.png" alt="RDSのSG変更2" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+12: 下にスクロールして"次へ"
+
+<img src="./image/RDS_change_sg3.png" alt="RDSのSG変更3" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+13: "すぐに適用"を選んで"DBインスタンスの変更"
+
+<img src="./image/RDS_change_sg4.png" alt="RDSのSG変更4" width="720px">
+
+>>>
+
+## スナップショットから復元
+
+14: 新しいインスタンスの"エンドポイント"を確認しよう
+
+15: 新しいインスタンスに接続してテーブルが復元されてるか確認しよう
+
+>>>
+
+## ここまでやったこと
+
+1. RDSインスタンス(PostgreSQL)を作成してみた
+2. PostgreSQLを使ってみた
+3. スナップショットからRDSインスタンスを復元してみた
 
 ---
 
