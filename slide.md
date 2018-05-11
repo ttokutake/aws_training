@@ -329,8 +329,6 @@ TODO: 図を貼る
 
 <img src="./image/EC2_alb_create11.png" alt="ALB作成11" width="720px">
 
-TODO: Nginxのaccess_log見せる
-
 >>>
 
 ## Load Balancerを導入する
@@ -530,7 +528,7 @@ TODO: 図を貼る
 23: 両方のインスタンスに`ssh`して以下を実施
 
 ```bash
-$ sudo tail -f /var/log/nginx/access.log
+$ sudo tail -f /var/log/nginx/access.log # SGを設定するときの疎通確認とかにも使える
 ```
 
 24: ブラウザでNginxのページを表示
