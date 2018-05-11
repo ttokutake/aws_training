@@ -930,8 +930,12 @@ sample=> \q
 
 何かわからないことがあったら聞いてください
 
+<img src="./image/police_syokumu_shitsumon.png" alt="質問" width="320px">
+
 ---
 
 ### 完
 
 お疲れ様でした！
+
+<img src="./image/banzai_people.png" alt="バンザイ" width="320px">
