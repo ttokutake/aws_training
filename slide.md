@@ -212,7 +212,7 @@ $ ssh ec2-user@(IPv4パブリックIP) -i ~/Downloads/(キーペア名).pem # �
 
 ## インスタンスにNginxを導入
 
-3: ブラウザで`http://(IPv1パブリックIP)`を開く
+3: ブラウザで`http://(IPv4パブリックIP)`を開く
 
 <img src="./image/EC2_nginx.png" alt="EC2のNginxページ" width="720px">
 
@@ -383,8 +383,11 @@ TODO: Nginxのaccess_log見せる
 
 <img src="./image/EC2_alb_done3.png" alt="ALB経由でNginx" width="720px">
 
+>>>
 
-TODO: IPでは見れなくなってることも確認
+## Load Balancerを導入する
+
+27: インスタンスのIPv4パブリックIPではページが表示されないことも確認してみよう！
 
 >>>
 
@@ -530,7 +533,7 @@ TODO: 図を貼る
 $ sudo tail -f /var/log/nginx/access.log
 ```
 
-24: ブラウザでALBのDNSにアクセス
+24: ブラウザでNginxのページを表示
 
 25: 何回かリロードして振り分けられることを確認
 
@@ -538,8 +541,7 @@ $ sudo tail -f /var/log/nginx/access.log
 
 ## 現状のインフラ構成図
 
-- 実はAZが一緒になってしまってるかもしれない
-- 本当はちゃんと指定して分けるべき
+(実はAZが一緒になってしまってるかもしれない?)
 
 TODO: 図を貼る
 
