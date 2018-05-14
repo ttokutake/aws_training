@@ -220,7 +220,7 @@ $ ssh ec2-user@(IPv4パブリックIP) -i ~/Downloads/(キーペア名).pem # �
 
 ## 現状のインフラ構成図
 
-TODO: 図を貼る
+<img src="./image/infra1.svg" alt="構築したインフラ1" width="720px">
 
 >>>
 
@@ -391,7 +391,7 @@ TODO: 図を貼る
 
 ## 現状のインフラ構成図
 
-TODO: 図を貼る
+<img src="./image/infra2.svg" alt="構築したインフラ2" width="720px">
 
 >>>
 
@@ -541,7 +541,7 @@ $ sudo tail -f /var/log/nginx/access.log # SGを設定するときの疎通確�
 
 (実はAZが一緒になってしまってるかもしれない?)
 
-TODO: 図を貼る
+<img src="./image/infra3.svg" alt="構築したインフラ3" width="720px">
 
 >>>
 
