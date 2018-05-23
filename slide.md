@@ -34,7 +34,7 @@ IoT事業本部第1開発部4課 徳武
 ## IaaS？PaaS？SaaS？
 
 - IaaS: Amazon EC2など。ユーザーがサーバーの細かい設定を気にしないといけない
-- PaaS: Amazon RDS, Herokuなど。ユーザーは使う上でサーバーの細かい設定を気にしなくて済む
+- PaaS: AWS Elastic Beanstalk, Herokuなど。ユーザーは使う上でサーバーの細かい設定を気にしなくて済む
 - SaaS: Amazon Rekognition, Gmailなど。ユーザーは使う上でサーバーのリソースとか気にしないで済む
 
 >>>
