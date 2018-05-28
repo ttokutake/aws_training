@@ -865,6 +865,7 @@ sample=> \q
 ## スナップショットから復元
 
 8: "DBインスタンスの復元"をクリック
+
 9: 作成完了まで待つ
 
 <img src="./image/RDS_snapshot_restore3.png" alt="RDSスナップショットから復元2" width="720px">
